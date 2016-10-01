@@ -45,7 +45,8 @@
 			  </div><br>
 			  <br>
 			  <?= $this->Form->button(__('Submit'), array('id' => 'Login', 'class' => 'btn btn-primary')) ?>
-		
+			  <p class="tag" >Are you a user ? 
+			  <?= $this->Html->link(__('Sign In'), ['controller' => 'Users', 'action' => 'login'], array('class' => 'uplink')) ?> it's easy</p>
 			 </div>
 			<!-- 
 			<div id="contents2">
