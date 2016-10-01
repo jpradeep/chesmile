@@ -62,7 +62,11 @@ class UserProfileController extends AppController
                 $this->Flash->error(__('The user profile could not be saved. Please, try again.'));
             }
         }
-        $users = $this->UserProfile->Users->find('list', ['limit' => 200]);
+        $users_id = "";
+        if(!empty($this->Auth->user('id')))
+        	$users_id = $this->Auth->user('id');
+        $users = $this->UserProfile->Users->find('list', array('conditions' => array('id' => $users_id)),['limit' => 200]);
+        
         $this->set(compact('userProfile', 'users'));
         $this->set('_serialize', ['userProfile']);
     }
@@ -113,22 +117,5 @@ class UserProfileController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-	
-	public function checkmail()
-	{
-		if($this->request->is('ajax')){
-			$this->autoRender = false;
-			$user = $this->request->data['email'];
-			$users = $this->Users->find('all')->where(['email'=> $user]);
-			$tmp = $users->toArray();
-			if(empty($tmp)){
-			  echo json_encode({"status":"ok");
-			}else{
-			  echo json_encode({"status":"!ok");
-			}
-
-		  }
-		  exit;
-  }
 	
 }

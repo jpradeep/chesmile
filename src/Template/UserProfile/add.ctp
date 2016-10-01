@@ -11,8 +11,9 @@
     <fieldset>
         <legend><?= __('Add User Profile') ?></legend>
         <?php
-        	echo $this->Form->input('user_id', ['options' => $users]);
-            echo $this->Form->input('Mobile');
+        	echo $this->Form->hidden('user_id', ['options' => $users]);
+        	//echo $this->Form->input('user_fullname', ['default', $users['fullname']]);
+        	echo $this->Form->input('Mobile');
             echo $this->Form->input('Address_1');
             echo $this->Form->input('Address_2');
             echo $this->Form->input('City');
@@ -20,8 +21,8 @@
             echo $this->Form->input('Country');
             echo $this->Form->input('Zipcode');
             echo $this->Form->input('Photo');
-            echo $this->Form->input('Created');
-            echo $this->Form->input('Modified');
+            //echo $this->Form->input('Created');
+            //echo $this->Form->input('Modified');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
