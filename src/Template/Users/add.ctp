@@ -1,30 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#email").click(function(){
-      $("#email").blur(function(){
-        var email = document.getElementById("email").value;
-        $.ajax({
-           type: "POST",
-           url: "/login/users/checkmail",
-           data: {email:email},
-           success: function(result){
-             if(result == 'ok'){
-             document.getElementById("myForm").submit();
-           }else{
-              alert('Email already exists');
-            }
-         }
-       });
-       return false;
-     });
-   });
- });
-</script>
-
-
-
-
 <?= $this->Form->create($user, array('id' => 'animdiv','class' => 'form-inline signin')) ?>
 <fieldset>
 		<div id="contents1">	
@@ -41,11 +14,11 @@
 			  <div class="form-group">
 			    
 				<?= $this->Form->input('password',array('id' => 'password', 'class' => 'form-control','label' => false,'placeholder' => 'password')) ?>
-				 <?= $this->Form->input('group_id', ['options' => $groups]); ?>
+				 <?= $this->Form->hidden('group_id', ['options' => $groups], ['default' => '1']); ?>
 			  </div><br>
 			  <br>
 			  <?= $this->Form->button(__('Submit'), array('id' => 'Login', 'class' => 'btn btn-primary')) ?>
-			  <p class="tag" >Are you a user ? 
+			  <p class="tag">
 			  <?= $this->Html->link(__('Sign In'), ['controller' => 'Users', 'action' => 'login'], array('class' => 'uplink')) ?> it's easy</p>
 			 </div>
 			<!-- 
